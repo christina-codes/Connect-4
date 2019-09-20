@@ -5,17 +5,17 @@ class Checker {
     this.dropped = false;
     this.columnLocation = 0;
   }
-  // Getter Methods
+  // getter methods
   get htmlChecker() {
     return document.getElementById(this.id);
   }
 
-  // Gets left offset of html element
+  // gets left offset of html element
   get offsetLeft() {
     return this.htmlChecker.offsetLeft;
   }
 
-  // Draw checkers
+  // draw checkers
   drawHTMLChecker() {
     const checker = document.createElement('div');
     document.getElementById('game-board-underlay').appendChild(checker);
@@ -23,7 +23,7 @@ class Checker {
     checker.className = 'checker';
     checker.style.backgroundColor = this.owner.color;
   }
-
+  // checker movement functions
   moveLeft() {
     if (this.columnLocation > 0) {
       this.htmlChecker.style.left = this.offsetLeft - 76;
@@ -37,12 +37,11 @@ class Checker {
     }
   }
 
-  // Drops html checker into targeted board space
+  // drops html checker into targeted board space
   drop(target, reset) {
     this.dropped = true;
     $(this.htmlChecker).animate({
       top: (target.y * target.diameter)
     }, 750, 'easeOutBounce', reset);
   }
-
 }

@@ -4,9 +4,7 @@ class Board {
     this.columns = 7;
     this.spaces = this.createSpaces();
   }
-  /* Creates 2D Array of spaces
-  * @return  {array}     spaces - an array of new space objects
-  */
+  // create & return 2d array of spaces
   createSpaces() {
     const spaces = [];
 
@@ -20,7 +18,7 @@ class Board {
     }
     return spaces;
   }
-
+  // draw spaces into board
   drawHTMLBoard() {
     for (let column of this.spaces) {
       for (let space of column) {

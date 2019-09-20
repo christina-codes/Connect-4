@@ -9,25 +9,23 @@ class Game {
       return this.players.find(player => player.active);
     }
 
-    /* Creates two player objects
-    * @return  {array}  An array of two player objects.
-    */
+    // creates and returns an array of two new player objects.
     createPlayers() {
       const players = [
-        new Player('Player 1', 1, '#e15258', true),
-        new Player('Player 2', 2, '#e59a13')
+        new Player('Player 1', 1, '#EF767A', true),
+        new Player('Player 2', 2, '#23F0C7')
       ];
       return players;
     }
 
+    // begin game - draw board and first checker
     startGame() {
       this.board.drawHTMLBoard();
       this.activePlayer.activeChecker.drawHTMLChecker();
       this.ready = true;
     }
 
-    /* Branches code, depending on what key player presses
-    * @param   {Object}    e - Keydown event object */
+    // branches code, depending on what key player presses
      handleKeyDown(e) {
        if (this.ready) {
          if (e.key === "ArrowLeft") {
@@ -39,7 +37,7 @@ class Game {
          }
        }
      }
-
+     // play current checker piece if there is an available space in it's current column
      playChecker() {
        let spaces = this.board.spaces;
        let activeChecker = this.activePlayer.activeChecker;
@@ -61,7 +59,7 @@ class Game {
        }
      }
 
-     // Checks if there a winner on the board after each checker drop
+     // checks if there a winner on the board after each checker drop
      checkForWin(target) {
        const owner = target.checker.owner;
        let win = false;
@@ -77,7 +75,6 @@ class Game {
                }
            }
        }
-
        // horizontal
        for (let x = 0; x < this.board.columns - 3; x++ ){
            for (let y = 0; y < this.board.rows; y++){
@@ -89,7 +86,6 @@ class Game {
                }
            }
        }
-
        // diagonal
        for (let x = 3; x < this.board.columns; x++ ){
           for (let y = 0; y < this.board.rows - 3; y++){
@@ -101,7 +97,6 @@ class Game {
               }
           }
       }
-
       // reverse diagonal
       for (let x = 3; x < this.board.columns; x++ ){
            for (let y = 3; y < this.board.rows; y++){
@@ -113,37 +108,35 @@ class Game {
                }
            }
        }
-
       return win;
      }
-
+     // switch current player
      switchPlayers() {
        for (let player of this.players) {
          player.active = player.active === true ? false : true;
        }
      }
-
+     // message displayed when game ends
      gameOver(message) {
-       const gameOverDiv = document.querySelector('#game-over');
-       const playAgain = document.querySelector('#reset');
-       gameOverDiv.style.display = 'block';
-       playAgain.style.display = 'block';
-       gameOverDiv.textContent = message;
-     }
-
-     // Updates game state after checker is dropped
-     updateGameState(checker, target) {
-       target.mark(checker);
-       if (!this.checkForWin(target)) {
-         this.switchPlayers();
-         if (this.activePlayer.checkCheckers()) {
-           this.activePlayer.activeChecker.drawHTMLChecker();
-           this.ready = true;
-         } else {
-           this.gameOver('No more checkers!');
-         }
-       } else {
-         this.gameOver(`${target.owner.name} wins!`);
-       }
-     }
-  }
+      const gameOverDiv = document.querySelector('#game-over');
+      const playAgain = document.querySelector('#reset');
+      gameOverDiv.style.display = 'block';
+      playAgain.style.display = 'block';
+      gameOverDiv.innerHTML = message;
+    }
+    // updates game state after checker is dropped 
+    updateGameState(checker, target) {
+      target.mark(checker);
+      if (!this.checkForWin(target)) {
+        this.switchPlayers();
+        if (this.activePlayer.checkCheckers()) {
+          this.activePlayer.activeChecker.drawHTMLChecker();
+          this.ready = true;
+        } else {
+          this.gameOver('No more checkers!');
+        }
+      } else {
+        this.gameOver(`<span style="color:${target.owner.color}">${target.owner.name}</span> wins!`);
+      }
+    }
+}

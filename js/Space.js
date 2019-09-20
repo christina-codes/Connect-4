@@ -8,7 +8,7 @@ class Space {
     this.radius = this.diameter/2;
   }
 
-  // Checks if space has an associated checker to find its owner
+  // checks if space has an associated checker to find its owner
   get owner() {
     if (this.checker === null) {
       return null;
@@ -16,7 +16,7 @@ class Space {
       return this.checker.owner;
     }
   }
-
+  // create spaces
   drawSVGSpace() {
     const svgSpace = document.createElementNS("http://www.w3.org/2000/svg", "circle");
     svgSpace.setAttributeNS(null, "id", this.id);
@@ -29,7 +29,7 @@ class Space {
     document.getElementById('mask').appendChild(svgSpace);
   }
 
-  // Updates space to reflect a checker has been dropped into it
+  // updates space to reflect a checker has been dropped into it
    mark(checker) {
     this.checker = checker;
   }

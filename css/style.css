@@ -1,11 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #DDFFD9;
-   font-family: sans-serif;
+  background-color: #493657;
   font-size: 1.5em;
   color: white;
   text-align: center;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* game scene and buttons */
@@ -16,7 +16,7 @@ body {
 }
 
 .table {
-    background-color: #645a7e;
+    background-color: #210B2C;
     z-index: 10;
     width: 100%;
     position: fixed;
@@ -25,39 +25,44 @@ body {
 
 #reset,
 #begin-game {
-	width: 200px;
+  color: #B8B8D1;
+  background: transparent;
+  border: 3px solid;
 	border-radius: 8px;
 	padding: 25px;
 	z-index: 200;
 	cursor: pointer;
-	border: none;
-    font-family: 'Wendy One', sans-serif;
-    font-size: 25px;
+  font-size: 25px;
+  transition: .15s;
+  font-family: "Montserrat", sans-serif;
+  text-transform:uppercase;
+  letter-spacing:2;
 }
 
 #begin-game {
-  	background-color: #645a7e;
-    color: #fff;
     position: absolute;
+    width: 200px;
   	left: 0;
   	right: 0;
   	margin: 0 auto;
-  	top: 200px;
+    padding: 25px;
+  	top: 250px;
 }
-
 #reset {
   display:none;
-  background-color:#fff;
-  color: #645a7e;
+  padding: 15px 25px;
   margin:25px auto;
 }
-
+#begin-game:hover,
+#reset:hover {
+  transform:scale(1.05,1.05);
+}
 /* board and pieces */
 #game-board {
 	position: relative;
 	width: 548px;
 	margin: 0 auto;
-	border: 8px solid #5FCF80;
+	border: 8px solid #7D7ABC;
 	height: 472px;
 	border-radius: 7px;
 	float: left;
@@ -79,8 +84,8 @@ body {
 #play-area {
     margin: 0 auto;
     width: 750px;
-    margin-top: 100px;
-	opacity: 0;
+    margin-top: 125px;
+    opacity:0;
 }
 
 .checker {
@@ -118,14 +123,14 @@ circle {
     width: 20px;
     height: 350px;
     margin: 0 auto;
-    background-color: #e59a13;
+    background-color: #7D7ABC;
     border-radius: 5px 5px 0px 0px;
 }
 
 .stand-attachment {
     width: 15px;
     height: 20px;
-    background-color: #e59a13;
+    background-color: #7D7ABC;
     position: absolute;
     top: 15px;
 }
@@ -140,7 +145,7 @@ circle {
 
 .stand-foot {
     width: 100%;
-    background-color: #e59a13;
+    background-color: #7D7ABC;
     height: 20px;
     border-radius: 8px 8px 0px 0px;
     top: 350px;
@@ -148,11 +153,29 @@ circle {
 
 
 /* message contents */
+
+#title {
+  position:absolute;
+  width:100%;
+  top: 25px;
+  font-family: 'Satisfy', 'Montserrat', sans-serif;
+  font-weight:normal;
+  font-size:4em;
+  text-align:center;
+  color: #B8B8D1;
+  transition:1s;
+}
+
+#title.smaller {
+  font-size: 2.25em;
+  top: 0;
+  margin-top: 15px;
+}
 #game-over {
 	display: none;
 	position: absolute;
 	z-index: 100;
-	top: -60px;
+	top: -40px;
 	left: 0;
 	right: 0;
 }

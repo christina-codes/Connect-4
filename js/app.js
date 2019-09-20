@@ -1,13 +1,14 @@
 const beginGame = document.querySelector('#begin-game');
 const resetGame = document.querySelector('#reset');
-const playArea = document.querySelector('#play-area');
+const title = document.querySelector('#title');
 
 const game = new Game();
 
 beginGame.addEventListener('click', () => {
   game.startGame();
-  beginGame.style.display = 'none';
-  playArea.style.opacity = '1';
+  $('#begin-game').fadeOut();
+  $('#play-area').fadeTo('slow', 1);
+  title.className = 'smaller';
 });
 
 resetGame.addEventListener('click', (e) => {
